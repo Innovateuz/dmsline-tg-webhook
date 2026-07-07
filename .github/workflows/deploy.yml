@@ -90,7 +90,7 @@ jobs:
               docker compose up -d nginx
 
               # Obtain wildcard SSL certificate
-              docker compose run --rm certbot certonly \
+              docker compose run --rm --entrypoint certbot certbot certonly \
                 --dns-digitalocean \
                 --dns-digitalocean-credentials /opt/do-dns-credentials.ini \
                 --dns-digitalocean-propagation-seconds 30 \

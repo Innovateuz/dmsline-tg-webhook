@@ -67,7 +67,7 @@ jobs:
             chmod +x deploy.sh
 
             # Start nginx if not running
-            docker compose up -d nginx
+            docker compose up -d --no-recreate nginx
 
             # Run blue-green deploy
             ./deploy.sh webhook "$DEPLOY_IMAGE"

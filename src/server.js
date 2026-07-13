@@ -8,7 +8,10 @@ const { setWebhook, deleteWebhook } = require('./utils/telegram');
 const app = express();
 app.use(express.json());
 
-const WEBHOOK_BASE = (process.env.WEBHOOK_BASE_URL || '').replace(/\/$/, '');
+let WEBHOOK_BASE = (process.env.WEBHOOK_BASE_URL || 'https://tgwebhook.dmsline.uz').replace(/\/$/, '');
+if (WEBHOOK_BASE && !WEBHOOK_BASE.startsWith('http')) {
+  WEBHOOK_BASE = `https://${WEBHOOK_BASE}`;
+}
 
 // Telegram → POST /webhook/:slug
 app.post('/webhook/:slug', async (req, res) => {

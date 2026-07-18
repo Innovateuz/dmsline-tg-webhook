@@ -1,4 +1,4 @@
-const { sendMessage } = require('../utils/telegram');
+const { sendMessage, setChatMenuButton } = require('../utils/telegram');
 
 module.exports = async function handleStart(token, org, message) {
   const userName = message.from?.first_name || 'Mehmon';
@@ -7,11 +7,13 @@ module.exports = async function handleStart(token, org, message) {
 
   const storefrontUrl = org.telegramBot?.storefrontUrl;
 
+  await setChatMenuButton(token, message.chat.id, storefrontUrl, org.telegramBot?.menuButtonText || 'Menu').catch(() => {});
+
   await sendMessage(token, message.chat.id, text, {
     reply_markup: {
       inline_keyboard: [[
         {
-          text: "🛍 Do'konni ochish",
+          text: org.telegramBot?.openButtonText || "🛍 Do'konni ochish",
           web_app: { url: storefrontUrl },
         },
       ]],

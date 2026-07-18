@@ -18,3 +18,9 @@ exports.deleteWebhook = (token) =>
 
 exports.getMe = (token) =>
   call(token, 'getMe');
+
+exports.setChatMenuButton = (token, chatId, url, text = 'Menu') =>
+  call(token, 'setChatMenuButton', {
+    chat_id: chatId,
+    menu_button: { type: 'web_app', text, web_app: { url } },
+  });

@@ -10,6 +10,8 @@ const orgSchema = new mongoose.Schema({
     storefrontUrl: { type: String, default: null },
     botUsername: { type: String, default: null },
     welcomeText: { type: String, default: null },
+    menuButtonText: { type: String, default: 'Menu' },
+    openButtonText: { type: String, default: "🛍 Do'konni ochish" },
   },
 }, { strict: false });
 
